@@ -1,3 +1,4 @@
 document.onload= function helloWorld(){
-document.getElementById("helloWorld").innerHTML = "Hello World"
+  alert("test");
+document.getElementById("helloWorld").innerHTML = "Hello World";
 }
