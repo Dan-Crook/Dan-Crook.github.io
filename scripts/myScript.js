@@ -1,4 +1,6 @@
-document.onload= function (){helloWorld()}
+window.onload= function(){
+  helloWorld();
+}
 
 function helloWorld(){
   alert("test");
