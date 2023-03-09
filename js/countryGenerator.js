@@ -8,8 +8,9 @@
  window.addEventListener('load', () => {
    fetch('countryCodes.json')
      .then(response => response.json())
-     .then(data => {
-       for (let i = 0; i < data.length; i++) {
+     .then((data) => console.log(data));
+ })
+     /*   for (let i = 0; i < data.length; i++) {
          countryCodes[data[i].name] = data[i].code;
        }
      })
@@ -26,9 +27,9 @@
    const randomCountry = countries[randomIndex];
    str = randomCountry.replace(/\s+/g, '-').toLowerCase();
    document.getElementById("selectedCountry").innerHTML = randomCountry +countryCode[str];
-   document.getElementById("flag").src = "https://www.countryflags.com/wp-content/uploads/"+str+"-flag-png-large.png"
+   document.getElementById("flag").src = "https://www.worldometers.info/img/flags/" + str + "-flag.gif-->"
    document.getElementById("flag").style.display = "inline";
  }
  function imgError(){
    document.getElementById("flag").style.display = "none";
- }
+ } */

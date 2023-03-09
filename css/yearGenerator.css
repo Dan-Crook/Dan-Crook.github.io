@@ -1,0 +1,35 @@
+body {
+    text-align: center;
+    font-family: Arial, sans-serif;
+  }
+label{
+    font-weight: bold;
+  }
+
+  .userEntries, input, label {
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+  }
+
+  .yearPick {
+    width: 200px;
+    height: 35px;
+    font-size: 18px;
+    padding: 5px;
+  }
+
+  .btn {
+    background-color: #3f51b5;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .randomYearContainer {
+    margin-top: 50px;
+    font-size: 50px;
+    font-weight: bold;
+  }

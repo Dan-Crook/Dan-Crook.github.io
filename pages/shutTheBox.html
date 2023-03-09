@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Dice Game</title>
+    <link rel="stylesheet" href="../css/shutTheBox.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="../js/shutTheBox.js"></script>
+  </head>
+
+  <body>
+    <h1 class="titleElement">Dice Game</h1>
+    <button class="titleElement play" onclick="play(10)">PLAY</button>
+    <hr />
+    <main class="hidden_on_load main">
+      <section class="cards"></section>
+      <section class="dice_results"></section>
+      <button class="button submit" onclick="submitAnswer()">SUBMIT</button>
+      <p class="endGame">win or lose</p>
+    </main>
+    <aside class="rules">
+      <h2>Rules</h2>
+      <p>
+        You must select cards that when added together equal the total of both
+        dice added together.
+      </p>
+      <p>
+        For Example: If you rolled a <strong>2</strong> and a
+        <strong>4</strong> The total rolled would be <strong>6</strong><br />
+        Therefore possible options could be: <br />
+        card <strong>6</strong><br />
+        cards <strong>5</strong> and <strong>1</strong><br />
+        cards <strong>3</strong>, <strong>2</strong> and
+        <strong>1</strong> etc..
+      </p>
+      <p>Once selected, Submit your answer.</p>
+      <h3>To Win</h3>
+      <p>
+        To win the Game, you must use all cards.<br />
+        If the total of the dice cannot be made by the cards you have left then
+        you Lose!
+      </p>
+    </aside>
+  </body>
+</html>

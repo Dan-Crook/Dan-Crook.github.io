@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Profit Calculator</title>
+
+<style>
+  body {
+    text-align: center;
+    font-family: Arial, sans-serif;
+  }
+label{
+    font-weight: bold;
+  }
+
+  input, label {
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+  }
+  .box {
+    width: 200px;
+    height: 35px;
+    font-size: 18px;
+    padding: 5px;
+  }
+
+  .btn {
+    background-color: #3f51b5;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+#profitResult {
+    margin-top: 50px;
+    font-size: 50px;
+    font-weight: bold;
+  }
+
+</style>
+
+</head>
+<body>
+<h1>Profit Percentage Calculator</h1>
+  <label for="cost">Cost</label>
+  <input class="box" id="cost" type="number" placeholder="£">
+  <label for="revenue">Revenue</label>
+  <input  class="box" id="revenue" type="number" placeholder="£">
+  <button class="btn" type="button" onclick="profitCalc(document.getElementById('cost').value, document.getElementById('revenue').value)">Calculate</button>
+  <p id="profitResult" class="profitResult"></p>
+
+  <script>
+    function profitCalc(cost, revenue) {
+      cost = Number(cost);
+      revenue = Number(revenue);
+
+      let profit = (Number(((revenue - cost) / revenue) * 100));
+      document.getElementById('profitResult').textContent = profit.toFixed(2) + '%';
+    }
+  </script>
+</body>
+</html>
+
+
+
+
