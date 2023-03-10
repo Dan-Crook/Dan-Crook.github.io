@@ -9,10 +9,25 @@ body {
   align-items: center;
   text-align: center;
   background: #1a1e23;
+  color: #ecf0f1;
+}
+.btn {
+  background-color: #3498db;
+  padding: 20px 40px;
+  margin: 30px;
+  border: none;
+  font-size: 30px;
+  color: #ecf0f1;
+  border-radius: 5px;
+  cursor: pointer;
 }
 h1 {
-  margin: 0px;
+  margin:0px;
   padding: 30px;
+  color: orange;
+  font-size: 100px;
+  display: block;
+  font-size: 100px;
 }
 
 nav {
@@ -22,23 +37,16 @@ nav {
   text-align: center;
 }
 
-h2 {
-  color: orange;
-  font-size: 100px;
-  display: block;
-  font-size: 100px;
-}
-
 ul {
   display: flex;
   flex-direction: column;
-  align-items: start;
+  align-items:center;
   list-style-type: none;
   font-size: 30px;
+  text-align: center;
 
   li {
     padding: 10px 0;
- 
     a {
       position: relative;
       display: block;

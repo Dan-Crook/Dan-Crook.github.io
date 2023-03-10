@@ -1,4 +1,4 @@
-function randomiser(min, max){
+function yearGen(min, max){
     min = Number(min)
     max = Number(max)
     let date =  new Date().getFullYear();
