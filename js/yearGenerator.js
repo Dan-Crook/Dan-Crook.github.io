@@ -9,7 +9,7 @@ function yearGen(min, max){
     let yearPicked = Math.floor(Math.random() * (max - min) + min);
         displayResult(yearPicked);
     }
+}
  function displayResult (result);{
     $('#randomYear').text(result.toString());
-    }
     }
