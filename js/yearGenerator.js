@@ -10,6 +10,6 @@ function yearGen(min, max){
         displayResult(yearPicked);
     }
  function displayResult (result);{
-    $('#randomYear').text(yearPicked.toString());
+    $('#randomYear').text(result.toString());
     }
     }
