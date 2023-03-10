@@ -7,6 +7,9 @@ function yearGen(min, max){
     }
     else{
     let yearPicked = Math.floor(Math.random() * (max - min) + min);
+        displayResult(yearPicked);
+    }
+ function displayResult (result);{
     $('#randomYear').text(yearPicked.toString());
     }
     }
