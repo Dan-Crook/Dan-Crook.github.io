@@ -1,0 +1,58 @@
+//TODO: Sort color pallets for background and text
+
+:root{
+
+//primary color shades
+--col-primary: #e6a628;
+--col-primary-lightest: #ebb853;
+--col-primary-light: #e9af3e;
+--col-primary-dark: #cf9524;
+--col-primary-darkest: #a1741c;
+
+//secondary color shades
+--col-secondary: #0E4749;
+--col-secondary-lightest: #3e6c6d;
+--col-secondary-light: #26595b;
+--col-secondary-dark: #0d4042;
+--col-secondary-darkest: #0b393a;
+
+//tertiary color shades
+--col-tertiary: #7798AB;
+--col-tertiary-lightest: #92adbc;
+--col-tertiary-light: #85a2b3;
+--col-tertiary-dark: #6b899a;
+--col-tertiary-darkest: #5f7a89;
+
+//background color shades
+--col-bg: #070e0f;
+--col-bg-contrast-high: #393e3f;
+--col-bg-contrast-mid: #202627;
+--col-bg-contrast-low:#202627;
+--col-bg-error: lightpink;
+--col-bg-warning:lightyellow;
+--col-bg-success: lightgreen;
+--col-bg-message: lightskyblue;
+
+//text color shades
+--col-text: #ecf0f1;
+--col-text-contrast-highest: #ecf0f1;
+--col-text-contrast-high: #ecf0f1;
+--col-text-contrast-low: #ecf0f1;
+--col-text-contrast-lowest: #ecf0f1;
+--col-text-error: darkred;
+--col-text-warning: gold;
+--col-text-success: green;
+--col-text-message: blue;
+
+//border color shades
+--col-border: #ecf0f1;
+--col-border-contrast-highest: #ecf0f1;
+--col-border-contrast-high: #ecf0f1;
+--col-border-contrast-low: #ecf0f1;
+--col-border-contrast-lowest: #ecf0f1;
+
+//put any possible future alternative colors to check
+}
+//#0E4749
+//#7798AB
+//#0d1b1e

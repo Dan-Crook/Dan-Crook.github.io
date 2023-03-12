@@ -1,0 +1,24 @@
+h1 {
+  margin:0px;
+  padding: 30px;
+  color: var(--col-primary);
+  font-size: var(--font-size-heading-large);
+  display: block;
+}
+h2{
+  margin:0px;
+  padding: 30px;
+  color: var(--col-primary);
+  font-size: var(--font-size-heading-medium);
+  display: block;
+}
+h2, h3, h4, h5, h6{
+  margin:0px;
+  padding: 30px;
+  color: var(--col-primary);
+  font-size: var(--font-size-heading-small);
+  display: block;
+}
+p{
+  font-size: var(--font-size-medium);
+}

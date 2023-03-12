@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Profit Calculator</title>
-<link rel="stylesheet" href="../css/main.css">
+<link rel="stylesheet" href="../css/style.css">
 
 </head>
 <body>
@@ -15,7 +15,7 @@
   <label for="revenue">Revenue</label>
   <input  class="box" id="revenue" type="number" placeholder="£">
   <button class="btn" type="button" onclick="profitCalc(document.getElementById('cost').value, document.getElementById('revenue').value)">Calculate</button>
-  <p id="profitResult" class="profitResult"></p>
+  <output id="profitResult" class="profitResult"></output>
 
   <script>
     function profitCalc(cost, revenue) {

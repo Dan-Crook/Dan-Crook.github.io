@@ -28,8 +28,8 @@
    str = randomCountry.replace(/\s+/g, '-').toLowerCase();
    document.getElementById("selectedCountry").innerHTML = randomCountry +countryCode[str];
    document.getElementById("flag").src = "https://www.worldometers.info/img/flags/" + str + "-flag.gif-->"
-   document.getElementById("flag").style.display = "inline";
+   document.getElementById("flagImg").style.display = "inline";
  }
  function imgError(){
-   document.getElementById("flag").style.display = "none";
+   document.getElementById("flagImg").style.display = "none";
  } */

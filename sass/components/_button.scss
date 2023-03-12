@@ -1,0 +1,17 @@
+button,  .btn{
+    background-color: var(--col-secondary);
+    color: inherit;
+    padding: 15px 20px;
+    margin: 30px;
+    border: none;
+    border-radius: 5px;
+    font-size: var(--font-size-largest);
+    cursor: pointer;
+
+    &:hover{
+        background-color: var(--col-secondary-light);
+    }
+    &:active{
+        background-color: var(--col-secondary-dark);
+    }
+}

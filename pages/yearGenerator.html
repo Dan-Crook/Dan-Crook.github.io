@@ -5,10 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 <title>Random Year Generator</title>
-<link rel="stylesheet" href="../css/main.css">
+<link rel="stylesheet" href="../css/style.css">
 <link rel="stylesheet" href="../css/yearGenerator.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-   
 <script src="../js/yearGenerator.js"></script>
 </head>
 <body>
@@ -18,11 +17,9 @@
 <input id="yearStart" class= "yearPick yearStart" type="number" value="1980">
 <label for="yearEnd">Latest Year</label>
 <input id="yearEnd" class= "yearPick yearEnd" type="number" value="2022">
-<button class="btn" type="button" onclick="yearGen($('#yearStart').val(), $('#yearEnd').val())">Randomiser</button>
+<button id="generate" class="btn" type="button">Generate Date</button>
 </section>
-<section class="randomYearContainer">
-<p id="randomYear" class="radomYear"></p>
-</section>
+<output id="randomYear" class="randomYear"></output>
 </body>
 </html>
 
