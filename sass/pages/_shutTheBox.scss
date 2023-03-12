@@ -1,0 +1,76 @@
+  /*
+  ===============
+  Large scale CSS
+  ===============
+  */
+  .widthMiddle{
+    margin: auto;
+    width: 80%;
+    
+  }
+  .endGame {
+    font-size: 50px;
+  }
+  .endGame {
+    font-size: 50px;
+    display: none;
+  }
+  .cards {
+    margin: 15px;
+    padding: 1px;
+    border: 1px solid var(--col-primary);
+  }
+  .dice_results > p {
+    margin: 50px;
+    border-radius: 30px;
+    background: var(--col-tertiary-darkest);
+  }
+  // .cards > P {
+  //   background: var(--col-bg-contrast-high);
+  // }
+
+  .cards > p,
+  .dice_results > P {
+    display: inline-block;
+    padding: 30px;
+    border: 1px solid black;
+    margin: 30px;
+    font-size: var(--font-size-large);
+  }
+  .card{
+    background: var(--col-primary-darkest);
+    &:hover{
+      background: var(--col-primary-dark);
+    }
+  }
+  .selected {
+    background: var(--col-primary-lightest);
+  }
+  .closed {
+    background: var(--col-bg-contrast-low);
+    pointer-events: none;
+  }
+  
+  .hidden_on_load {
+    display: none;
+  }
+  @media only screen and (max-width: 700px) {
+    p {
+      font-size: 30px;
+    }
+    .cards {
+      margin: 15px;
+      padding: 1px;
+      border: 1px solid red;
+      width: fit-content;
+    }
+    .dice_results {
+      margin: 10px;
+    }
+    .cards > p,
+    .dice_results > P {
+      border: 1px solid black;
+      margin: 5px;
+    }
+  }
+  
