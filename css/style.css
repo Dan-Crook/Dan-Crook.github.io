@@ -98,52 +98,28 @@ output {
   font-weight: bold;
 }
 
-nav {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-ul {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.nav-bar ul {
   list-style-type: none;
-  font-size: 30px;
-  text-align: center;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: var(--col-bg-contrast-high);
 }
-ul li {
-  padding: 10px 0;
+.nav-bar ul li {
+  float: left;
 }
-ul li a {
-  position: relative;
+.nav-bar ul a {
   display: block;
-  padding: 4px 0;
-  font-family: lato, sans-serif;
   color: var(--col-text);
+  text-align: center;
+  padding: 14px 16px;
   text-decoration: none;
-  text-transform: uppercase;
-  transition: 0.5s;
 }
-ul li a::after {
-  position: absolute;
-  content: "";
-  top: 100%;
-  left: 0;
-  width: 100%;
-  height: 3px;
-  background: var(--col-secondary);
-  transform: scaleX(0);
-  transform-origin: right;
-  transition: transform 0.5s;
+.nav-bar ul li a:hover:not(.active-nav) {
+  background-color: var(--col-secondary-darkest);
 }
-ul li a:hover {
-  color: varf(--col-text-contrast-high);
-}
-ul li a:hover::after {
-  transform: scaleX(1);
-  transform-origin: left;
+.nav-bar ul .active-nav {
+  color: var(--col-primary);
 }
 
 #flagImg {
@@ -155,6 +131,53 @@ ul li a:hover::after {
   margin-top: 50px;
   font-size: 50px;
   font-weight: bold;
+}
+
+.projects {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.projects ul {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  list-style-type: none;
+  font-size: 30px;
+  text-align: center;
+}
+.projects li {
+  padding: 10px 0;
+}
+.projects li a {
+  position: relative;
+  display: block;
+  padding: 4px 0;
+  font-family: lato, sans-serif;
+  color: var(--col-text);
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: 0.5s;
+}
+.projects li a::after {
+  position: absolute;
+  content: "";
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: var(--col-secondary);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.5s;
+}
+.projects li a:hover {
+  color: var(--col-text-contrast-high);
+}
+.projects li a:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
 }
 
 /*
@@ -185,7 +208,7 @@ Large scale CSS
 .dice_results > p {
   margin: 50px;
   border-radius: 30px;
-  background: var(--col-tertiary-darkest);
+  background: var(--col-tertiary-dark);
 }
 
 .cards > p,
@@ -248,13 +271,13 @@ Large scale CSS
   --col-secondary-light: #26595b;
   --col-secondary-dark: #0d4042;
   --col-secondary-darkest: #0b393a;
-  --col-tertiary: #7798AB;
-  --col-tertiary-lightest: #92adbc;
-  --col-tertiary-light: #85a2b3;
-  --col-tertiary-dark: #6b899a;
-  --col-tertiary-darkest: #5f7a89;
-  --col-bg: #070e0f;
-  --col-bg-contrast-high: #393e3f;
+  --col-tertiary: #3498db;
+  --col-tertiary-lightest: #69b9ff;
+  --col-tertiary-light: #3ca4ff;
+  --col-tertiary-dark: #21628e;
+  --col-tertiary-darkest: #153e5b;
+  --col-bg: #101117 ;
+  --col-bg-contrast-high: #282a3a;
   --col-bg-contrast-mid: #202627;
   --col-bg-contrast-low:#202627;
   --col-bg-error: lightpink;

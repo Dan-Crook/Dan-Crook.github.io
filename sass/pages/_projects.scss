@@ -1,18 +1,16 @@
-nav {
+.projects {
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
-}
-
-ul {
-  display: flex;
-  flex-direction: column;
-  align-items:center;
-  list-style-type: none;
-  font-size: 30px;
-  text-align: center;
-
+  ul {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    list-style-type: none;
+    font-size: 30px;
+    text-align: center;
+  }
   li {
     padding: 10px 0;
     a {
@@ -39,7 +37,7 @@ ul {
       }
 
       &:hover {
-        color: varf(--col-text-contrast-high);
+        color: var(--col-text-contrast-high);
       }
 
       &:hover::after {
