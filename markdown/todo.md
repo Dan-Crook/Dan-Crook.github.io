@@ -1,3 +1,3 @@
 # General To Do list
 
-<!--TODO: Move css for pages over to the saas folder-->
+<!--TODO: Add icons to nav bar - social mediasS>

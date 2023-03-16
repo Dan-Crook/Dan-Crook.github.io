@@ -105,8 +105,11 @@ output {
   overflow: hidden;
   background-color: var(--col-bg-contrast-high);
 }
-.nav-bar ul li {
+.nav-bar ul .nav-left {
   float: left;
+}
+.nav-bar ul .nav-right {
+  float: right;
 }
 .nav-bar ul a {
   display: block;
