@@ -1,39 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Profit Calculator</title>
-<link rel="stylesheet" href="/css/style.css">
-<script src="https://kit.fontawesome.com/33361c4399.js" crossorigin="anonymous"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="/js/nav.js"></script>
-</head>
-<body>
-  <header>
-<div id="nav-placeholder"></div>
-  </header>
-<h1>Profit Percentage</h1>
-  <label for="cost">Cost</label>
-  <input class="box" id="cost" type="number" placeholder="£">
-  <label for="revenue">Revenue</label>
-  <input  class="box" id="revenue" type="number" placeholder="£">
-  <button class="btn" type="button" onclick="profitCalc(document.getElementById('cost').value, document.getElementById('revenue').value)">Calculate</button>
-  <output id="profitResult" class="profitResult"></output>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Profit Calculator</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <script
+      src="https://kit.fontawesome.com/33361c4399.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="/js/nav.js"></script>
+  </head>
 
-  <script>
-    function profitCalc(cost, revenue) {
-      cost = Number(cost);
-      revenue = Number(revenue);
+  <body>
+    <header>
+      <div id="nav-placeholder"></div>
+    </header>
+    <h1>Profit Percentage</h1>
+    <label for="cost">Cost</label>
+    <input class="box" id="cost" type="number" placeholder="£" />
+    <label for="revenue">Revenue</label>
+    <input class="box" id="revenue" type="number" placeholder="£" />
+    <button
+      class="btn"
+      type="button"
+      onclick="profitCalc(document.getElementById('cost').value, document.getElementById('revenue').value)"
+    >
+      Calculate
+    </button>
+    <output id="profitResult" class="profitResult"></output>
 
-      let profit = (Number(((revenue - cost) / revenue) * 100));
-      document.getElementById('profitResult').textContent = profit.toFixed(2) + '%';
-    }
-  </script>
-</body>
+    <script>
+      function profitCalc(cost, revenue) {
+        cost = Number(cost);
+        revenue = Number(revenue);
+
+        let profit = Number(((revenue - cost) / revenue) * 100);
+        document.getElementById("profitResult").textContent =
+          profit.toFixed(2) + "%";
+      }
+    </script>
+  </body>
 </html>
-
-
-
-
