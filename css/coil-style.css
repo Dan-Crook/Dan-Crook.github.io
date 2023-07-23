@@ -1,5 +1,4 @@
-
-/*TODO: icorprate this pages CSS into SCSS folder sructure */
+/* Incorporate This into main SCSS folder structure */
 
 :root {
     --primary-color: #026fd3;   /* Blue */
@@ -221,4 +220,32 @@ body {
   }
   .slitError{
     color: var(--error-color);
+  }
+
+  /* Once ll incorporated into SCSS this section can be deleted */
+  .nav-bar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #282a3a;
+  }
+  .nav-bar ul .nav-left {
+    float: left;
+  }
+  .nav-bar ul .nav-right {
+    float: right;
+  }
+  .nav-bar ul a {
+    display: block;
+    color: #ecf0f1;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  .nav-bar ul li a:hover:not(.active-nav) {
+    background-color: #0b393a;
+  }
+  .nav-bar ul .active-nav {
+    color: #e6a628;
   }
