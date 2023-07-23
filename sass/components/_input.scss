@@ -6,4 +6,10 @@ input{
     text-align: center;
     font-size: var(--font-size-medium);
     padding: 5px;
+    border: var(--col-border-contrast-highest);
+    padding: 10px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    background-color: var(--col-bg);
+    color: var(--col-text);
   }
