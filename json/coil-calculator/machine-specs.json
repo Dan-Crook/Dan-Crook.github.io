@@ -1,0 +1,26 @@
+{
+    "prestonOld": {
+      "od": 1600,
+      "width": 350,
+      "onWeight": 1500,
+      "minGauge": 0.3,
+      "maxGauge": 1.2,
+      "scrap": 5,
+      "slits": 13,
+      "slitWidth": 9.05,
+      "offOD": 970,
+      "offWeight": 750
+    },
+    "prestonNew": {
+      "od": 1350,
+      "width": 470,
+      "onWeight": 2500,
+      "minGauge": 0.3,
+      "maxGauge": 1.2,
+      "scrap": 5,
+      "slits": 13,
+      "slitWidth": 9.05,
+      "offOD": 1190,
+      "offWeight": 750
+    }
+  }

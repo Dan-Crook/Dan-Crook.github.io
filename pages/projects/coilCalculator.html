@@ -1,7 +1,3 @@
-<!--
-  TODO: Number of slits depends on gauge - how to efficiently check this? edit this into error messages
--->
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -10,678 +6,50 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Coil Calculator 3000</title>
     <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"
-    />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
       href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap"
       rel="stylesheet"
     />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js">
-</script>
-<script src="https://kit.fontawesome.com/33361c4399.js" crossorigin="anonymous"></script>
-<script src="/js/nav.js"></script>
-        <link rel="stylesheet" href="/css/style.css">
-    <style>
-      input,
-      select,
-      option,
-      input:focus {
-        display: block;
-        background: transparent;
-        outline: black;
-        font-size: 16px;
-        width: 160px;
-      }
-      body {
-        height: 100%;
-        font-family: "Open Sans", sans-serif;
-        font-size: 16px;
-      }
-      button:hover {
-        cursor: pointer;
-      }
-      /*
-===============
-SLIT SIZES GRID
-===============
-*/
-      .grid-container {
-        display: grid;
-        justify-content: center;
-        grid-template-columns: auto auto;
-        column-gap: 40px;
-        row-gap: auto;
-        max-width: 100%;
-      }
-      .slits {
-        grid-column: 1/1;
-      }
-      .sizes {
-        grid-column: 2/2;
-      }
-      /*
-=====================
-WEIGHT TO LENGTH GRID
-=====================
-*/
-      .grid-weight {
-        display: grid;
-        grid-template-columns: auto auto auto;
-        gap: 0;
-        overflow: hidden;
-      }
-      .grid-col-1 {
-        grid-column: 1/1;
-        margin: 0;
-      }
-      .grid-col-2 {
-        grid-column: 2/2;
-        margin: 0;
-      }
-      .grid-col-3 {
-        grid-column: 3/3;
-        margin: 0;
-      }
-      .inputError {
-        border-color: red;
-        outline: red;
-      }
-      .icon {
-        font-size: x-large;
-        filter: brightness(85%);
-        vertical-align: middle;
-        margin: 10px;
-      }
-      .icon:hover {
-        filter: brightness(100%);
-        cursor: pointer;
-      }
-      .center {
-        text-align: center;
-      }
-      #report {
-        display: none;
-        border: 1px solid;
-        background: LightGrey;
-        padding: 5px;
-        margin: 10px 0px;
-        width: 95%;
-      }
-      .totalTime {
-        font-weight: 900;
-        color: green;
-      }
-      .message {
-        font-style: bold;
-      }
-      .error {
-        color: black;
-      }
-      .calc {
-        float: left;
-        padding: 10px;
-        margin: auto;
-        width: 400px;
-        height: auto;
-        border: solid 1px DarkGrey;
-      }
-      .collapsible:hover {
-        text-decoration: underline;
-        cursor: pointer;
-      }
-      .collpase {
-        margin-top: 0px;
-        margin-bottom: 0px;
-        width: 100%;
-        height: auto;
-        display: block;
-      }
-      .big-btn {
-        width: 200px;
-        height: 40px;
-        font-size: xx-large;
-      }
-    </style>
-
+    <link rel="stylesheet" href="/css/coil-style.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
-    <script>
-      /*
-================
-Global Variables
-================
-*/
-      let lenBool = false;
-
-      const prestonOld = `{
-              "od": 1600,
-              "width": 350,
-              "onWeight": 1500,
-              "minGauge": 0.3,
-              "maxGauge": 1.2,
-              "scrap": 5,
-              "slits": 13,
-              "slitWidth": 9.05,
-              "offOD": 970,
-              "offWeight": 750
-            }`;
-      const prestonNew = `{
-              "od": 1350,
-              "width": 470,
-              "onWeight": 2500,
-              "minGauge": 0.3,
-              "maxGauge": 1.2,
-              "scrap": 5,
-              "slits": 13,
-              "slitWidth": 9.05,
-              "offOD": 1190,
-              "offWeight": 750
-            }`;
-
-      let machineSpec = [prestonOld, prestonNew];
-      /*
-========
-COLLAPSE
-========
-*/
-
-      $(document).ready(function () {
-        $(".collapsible").click(function () {
-          $(this).next().fadeToggle(300);
-        });
-      });
-
-      /*
-================
-CHANGE TO LENGTH
-================
-*/
-      $(document).ready(function () {
-        $("#swap").click(function () {
-          if (lenBool == false) {
-            lenBool = true;
-            $("#weightOrLength").val("");
-            $("#labelSwapOne").text("Total Batch Length (m)");
-            $("#labelSwapTwo").text("Weight");
-          } else {
-            lenBool = false;
-            $("#weightOrLength").val("");
-            $("#labelSwapOne").text("Total Batch Weight (kg)");
-            $("#labelSwapTwo").text("Length");
-          }
-        });
-      });
-
-      /*
-===================
-ADD MORE SLIT SIZES
-===================
-*/
-      $(document).ready(function () {
-        $(".add").click(function () {
-          $("<br>").addClass("cloneBreak").appendTo(".grid-container");
-          $(".slits:first")
-            .clone()
-            .appendTo(".grid-container")
-            .find("input[type=number]")
-            .val(0);
-          $(".sizes:first")
-            .clone()
-            .appendTo(".grid-container")
-            .find("input[type=number]")
-            .val(0);
-        });
-        /*
-=================
-REMOVE SLIT SIZES
-=================
-*/
-      });
-      $(document).ready(function () {
-        $(".minus").click(function () {
-          if ($(".slits").length > 1) {
-            $(".slits:last").remove();
-            $(".sizes:last").remove();
-            $(".cloneBreak:last").remove();
-          }
-        });
-      });
-      /*
-  =============
-  VALIDATE FORM
-  =============
-  */
-      function validateForm() {
-        let errorCount = 0;
-        let valForm = [$("#weightOrLength"), $("#width"), $("#gauge")];
-        let valFormInt = [$("#coils"), $("#runs")];
-        for (i = 0; i < valFormInt.length; i++) {
-          $(valFormInt[i]).removeClass("inputError");
-          if (
-            $(valFormInt[i]).val() == "" ||
-            $(valFormInt[i]).val() < 1 ||
-            Math.floor($(valFormInt[i]).val()) != $(valFormInt[i]).val()
-          ) {
-            $(valFormInt[i]).addClass("inputError");
-            errorCount = +1;
-          }
-        }
-        for (i = 0; i < valForm.length; i++) {
-          $(valForm[i]).removeClass("inputError");
-          if ($(valForm[i]).val() == "" || $(valForm[i]).val() <= 0) {
-            $(valForm[i]).addClass("inputError");
-            errorCount = +1;
-          }
-        }
-        if (errorCount < 1) {
-          calculate();
-        } else {
-          alert("Please check the boxes marked in red");
-        }
-      }
-      /*
-=========
-CALCULATE
-=========
-*/
-      function calculate() {
-        /*
-==============
-CLEAR MESSAGES
-==============
-*/
-
-        $("#messages").empty();
-
-        /*
-==========
-VARIABLES
-=========
-*/
-
-        /*
-====================================
-CONSTANTS - USER CANNOT CHANGE THESE
-====================================
-*/
-        const coefficient = 1_000_000;
-        const metersPerMinute = 9.5;
-        const pick = 0.5;
-        const onCoil = 0.16;
-        const offCoil = 0.16;
-        const pack = 0.5;
-        const setup = 0.16;
-        let slitSizes = [];
-        let numSlits = [];
-
-        /*
-=========================
-VARIABLES FROM USER INPUT
-=========================
-*/
-        let offCoilTime = 0;
-        let onCoilTime = 0;
-
-        let runs = $("#runs").val();
-        let width = $("#width").val();
-        let gauge = $("#gauge").val();
-        let coilID = $("#coilID").val();
-        let density = $("#density").val();
-        let coils = $("#coils").val();
-        let machine = $("#machine").val();
-        let lengthInput = 1;
-        let weight = 0;
-        let errorType = JSON.parse(machineSpec[machine]);
-
-        if (lenBool == true) {
-          lengthInput = $("#weightOrLength").val();
-          weight = density * ((width * gauge * lengthInput) / coefficient);
-        } else {
-          weight = $("#weightOrLength").val();
-        }
-        /*
-======
-ERRORS
-======
-*/
-        const errorFeedOD =
-          '<li class="message error"> FEED OD: The feed coil OD is over the maximum for the selected machine<br>Max = ' +
-          errorType.od +
-          "mm</li>";
-        const errorFeedWeight =
-          '<li class="message error"> FEED WEIGHT: The feed coil weight is over the maximum for the selected machine<br>Max = ' +
-          errorType.onWeight +
-          "kg</li>";
-        const errorRunsWeight =
-          '<li class="message error"> PRODUCED WEIGHT: The produced coils weight is over the maximum for the selected machine<br>Max = ' +
-          errorType.offWeight +
-          "kg</li>";
-        const errorRunsOD =
-          '<li class="message error"> PRODUCED OD: The produced coils OD is over the maximum for the selected machine<br>Max = ' +
-          errorType.offOD +
-          "mm</li>";
-        const errorFeedWidth =
-          '<li class="message error"> FEED WIDTH: The feed coil width is over the maximum for the selected machine<br>Max = ' +
-          errorType.width +
-          "mm</li>";
-        const errorSlits =
-          '<li class="message error"> SLITS: There are too many slits for the selected machine to handle at once<br>Max = ' +
-          errorType.slits +
-          "</li>";
-        const errorScrap =
-          '<li class="message error"> SCRAP: The scrap width is under the minimum for the selected machine<br>Min = ' +
-          errorType.scrap +
-          "mm</li>";
-        const errorSlitSize =
-          '<li class="message error"> SLIT WIDTH: One or more slit widths are under the minimum for the selected machine<br>Min = ' +
-          errorType.slitWidth +
-          "mm</li>";
-        const errorMinGauge =
-          '<li class="message error"> GAUGE: The feed coil gauge is under the minimum for the selected machine)<br>Min = ' +
-          errorType.minGauge +
-          "mm</li>";
-        const errorMaxGauge =
-          '<li class="message error"> GAUGE: The feed coil gauge is over the maximum for the selected machine<br>Max = ' +
-          errorType.maxGauge +
-          "mm</li>";
-        /*
-=====================
-FEED COIL INFORMATION
-=====================
-*/
-
-        let coilWeight = weight / coils || 0;
-        let coilWeightPounds = coilWeight * 2.2 || 0;
-        let feedLengthTotal =
-          Math.round(((weight / density) * coefficient) / (width * gauge)) || 0;
-        let feedLength =
-          Math.round(
-            ((weight / coils / density) * coefficient) / (width * gauge)
-          ) || 0;
-        let feedCoilOD =
-          Math.round(
-            Math.sqrt(coilID ** 2 + (4 * feedLength * gauge * 1000) / Math.PI)
-          ) || 0;
-
-        $("#coilWeight").text(
-          "Feed Coil Weight = " +
-            coilWeight.toFixed(0).toString() +
-            "kg (" +
-            coilWeightPounds.toFixed(1).toString() +
-            " lb) per coil"
-        );
-        $("#feedLength").text(
-          "Feed Coil Length = " + feedLength.toString() + "meters per coil"
-        );
-        $("#feedCoilOD").text(
-          "Feed Coil OD = " +
-            feedCoilOD.toString() +
-            "mm (" +
-            (feedCoilOD / 25.4).toFixed(0).toString() +
-            '") per coil'
-        );
-
-        if (coilWeight > errorType.onWeight) {
-          $("#messages").append(errorFeedWeight);
-        }
-        if (feedCoilOD > errorType.od) {
-          $("#messages").append(errorFeedOD);
-        }
-        if (width > errorType.width) {
-          $("#messages").append(errorFeedWidth);
-        }
-        if (gauge > errorType.maxGauge) {
-          $("#messages").append(errorMaxGauge);
-        }
-        if (gauge < errorType.minGauge) {
-          $("#messages").append(errorMinGauge);
-        }
-        /*
-==========================
-PRODUCED COILS INFORMATION
-==========================
-*/
-
-        let runWeight = weight / runs / coils;
-        let runWeightPounds = runWeight * 2.2;
-        let length =
-          Math.round(((runWeight / density) * coefficient) / (width * gauge)) ||
-          0;
-        let coilOD =
-          Math.round(
-            Math.sqrt(coilID ** 2 + (4 * length * gauge * 1000) / Math.PI)
-          ) || 0;
-        let buildUp = runWeight / width || 0;
-        let coilODInch = coilOD / 25.4;
-
-        $("#length").text(
-          "Coil Length = " + length.toFixed(2).toString() + "meters"
-        );
-        $("#coilOD").text(
-          "Coil OD = " +
-            coilOD.toString() +
-            "mm (" +
-            coilODInch.toFixed(0).toString() +
-            '")'
-        );
-        $("#buildUp").text(
-          "Build Up = " + buildUp.toFixed(2).toString() + "mm per coil"
-        );
-        $("#runWeight").text(
-          "Total Weight Per Run = " + runWeight.toFixed(0).toString() + "kg"
-        );
-
-        if (runWeight > errorType.offWeight) {
-          $("#messages").append(errorRunsWeight);
-        }
-        if (coilOD > errorType.offOD) {
-          $("#messages").append(errorRunsOD);
-        }
-
-        /*
-======================
-CALCULATING SLIT SIZES
-======================
-*/
-        $("#slitSizes").empty();
-        slitSizes = $(".slitWidth").toArray();
-        numSlits = $(".slitNum").toArray();
-        let scrap = width;
-        let scrapWeight = 0;
-        let sizeCount = 0;
-        let sizeError = 0;
-        for (var i = 0, n = slitSizes.length; i < n; i++) {
-          let size = $(slitSizes[i]).val();
-          let num = $(numSlits[i]).val();
-          if (size > 0 && num > 0) {
-            sizeCount = +1;
-            if (size < errorType.slitWidth) {
-              sizeError = +1;
-            }
-            let totalSlitWeight = (weight / width) * num * size;
-            let numCoils = coils * runs * num;
-            let slitWeight = totalSlitWeight / numCoils;
-            scrap = scrap - num * size;
-            scrapWeight = (weight / width) * scrap;
-            $("#slitSizes").append(
-              "<li>" +
-                $(slitSizes[i]).val() +
-                "mm Total: " +
-                totalSlitWeight.toFixed(0).toString() +
-                "kg <br> " +
-                numCoils +
-                " coils at " +
-                slitWeight.toFixed(0).toString() +
-                "kg (" +
-                (slitWeight * 2.2).toFixed(1).toString() +
-                " lb) each</li><br>"
-            );
-          }
-        }
-        if (sizeError > 0) {
-          $("#messages").append(errorSlitSize);
-        }
-        if (sizeCount > 0) {
-          $("#slitSizes").append(
-            "<li>Scrap: " + scrap.toFixed(0) + "mm (" + scrapWeight.toFixed(0) + "kg)</li>"
-          );
-        }
-        if (scrap < 0) {
-          alert("Slit widths exceed the feed coil width");
-          $(".slitData").css("color", "red");
-          $(".slitData").children("*").css("color", "red");
-          $("#messages").append(
-            '<li class="message error">Slit widths exceed the Feed coil width</li>'
-          );
-        } else if (scrap < errorType.scrap) {
-          $("#messages").append(errorScrap);
-          $(".slitData").css("color", "black");
-          $(".slitData").children("*").css("color", "black");
-        } else {
-          $(".slitData").css("color", "black");
-          $(".slitData").children("*").css("color", "black");
-        }
-        /*
-================
-PRODUCTION TIMES
-================
-*/
-        let slits = 0;
-        for (var i = 0; i < numSlits.length; i++) {
-          slits = slits + Number($(numSlits[i]).val());
-        }
-        if (slits > errorType.slits) {
-          $("#messages").append(errorSlits);
-        }
-        let time = feedLengthTotal / metersPerMinute / 60;
-        let days = time / 7;
-
-        /*
-=========================================================================================
-IF WEIGHTS ARE LESS THAN 25 THEN THEY CAN BE MANUALLY HANDLES QUICKER SO LESS TIME TO ADD
-==========================================================================================
-                        */
-        onCoilTime = onCoil * coils;
-        offCoilTime = offCoil * runs * coils * slits;
-
-        /*
-=================================================================================
-IF THERE IS NO COIL WEIGHT THEN THERE WILL BE NO MANUAL HANDLING - SET TIMES TO 0
-=================================================================================
-*/
-        let handling = 0;
-        if (weight > 0) {
-          handling = onCoilTime + offCoilTime;
-        } else {
-          handling = 0;
-        }
-        let handlingDays = handling / 7;
-
-        let additionalTime = pick + pack + setup * slits;
-        let additionalTimeDays = additionalTime / 7;
-
-        let totalTime = time + handling + additionalTime;
-        let totalDays = totalTime / 7;
-
-        $("#time").text(
-          "Slitting: " +
-            time.toFixed(1).toString() +
-            " hours (" +
-            days.toFixed(1).toString() +
-            " working days)"
-        );
-        $("#handling").text(
-          "Handling: " +
-            handling.toFixed(1).toString() +
-            " hours (" +
-            handlingDays.toFixed(1).toString() +
-            " working days)"
-        );
-        $("#additionalTime").text(
-          "Setup, Picking And Packing: " +
-            additionalTime.toFixed(1).toString() +
-            " hours (" +
-            additionalTimeDays.toFixed(1).toString() +
-            " working days)"
-        );
-        $("#totalTime").text(
-          "Total Time: " +
-            totalTime.toFixed(1).toString() +
-            " hours (" +
-            totalDays.toFixed(1).toString() +
-            " working days)"
-        );
-
-        /*
-=======================================
-DISPLAY REPORT,  MESSAGES AND SLIT DATA
-=======================================
-*/
-        if ($("#messages").is(":empty")) {
-          $("#messageHeader").css("display", "none");
-        } else {
-          $("#messageHeader").css("display", "block");
-        }
-
-        if ($("#slitSizes").is(":empty")) {
-          $("#slitSizeHeader").css("display", "none");
-        } else {
-          $("#slitSizeHeader").css("display", "block");
-        }
-
-        report = $("#report");
-        report.css("display", "block");
-        report[0].scrollIntoView({ behavior: "smooth" });
-      }
-    </script>
+    <script src="/js/coil-calculator/calculator.js"></script>
+    <script src="/js/coil-calculator/collapse-headings.js"></script>
+    <script src="/js/coil-calculator/slit-sizes.js"></script>
   </head>
 
   <body>
-    <!--
-  =======
-  HEADING
-  =======
-  -->
-        <header>
-      <div id="nav-placeholder"></div>
-    </header>
     <h1>Coil Slitting Calculator</h1>
-
+    <!--Calculate Button-->
+    <div class="center">
+      <button class="big-btn" type="button" onclick="validateForm()">
+        Calculate
+      </button>
+    </div>
     <main>
-      <!--
-  ==========
-  USER INPUTS
-  ===========
-  -->
-      <div class="calc">
+      <div id="form-container" class="calc">
         <form id="form">
-          <div class="grid-weight">
-            <div class="grid-col-1">
-              <label id="labelSwapOne" for="weight"
-                >Total Batch Weight (kg)</label
-              >
-              <input
-                id="weightOrLength"
-                name="weightOrLength"
-                input
-                type="number"
-                placeholder="1234"
-                required
-                min="0"
-              />
-            </div>
-            <span id="swap" class="material-symbols-outlined grid-col-2 icon"
-              >sync_alt</span
-            >
-            <p class="grid-col-3"><strong id="labelSwapTwo">Length</strong></p>
+          <h2>Input Data</h2>
+          <div class="input-container">
+            <label for="length-weight">Calculate By Weight Or Length</label>
+            <select id="length-weight" name="length-weight" class="input">
+              <option value="weight">Weight (kg)</option>
+              <option value="length">Length (m)</option>
+            </select>
+            <input
+              id="weightOrLength"
+              class="input"
+              name="weightOrLength"
+              input
+              type="number"
+              placeholder="1234"
+              required
+              min="0"
+            />
           </div>
           <br />
           <label for="width">Width (mm)</label>
           <input
             id="width"
+            class="input"
             name="width"
             input
             type="number"
@@ -693,6 +61,7 @@ DISPLAY REPORT,  MESSAGES AND SLIT DATA
           <label for="gauge">Gauge (mm)</label>
           <input
             id="gauge"
+            class="input"
             name="gauge"
             input
             type="number"
@@ -704,6 +73,7 @@ DISPLAY REPORT,  MESSAGES AND SLIT DATA
           <label for="coils">Coils In Batch</label>
           <input
             id="coils"
+            class="input"
             name="coils"
             input
             type="number"
@@ -715,6 +85,7 @@ DISPLAY REPORT,  MESSAGES AND SLIT DATA
           <label for="runs">Number Of Runs</label>
           <input
             id="runs"
+            class="input"
             name="runs"
             input
             type="number"
@@ -725,106 +96,88 @@ DISPLAY REPORT,  MESSAGES AND SLIT DATA
           <br />
 
           <label for="coilID">Coil ID</label>
-          <select id="coilID" name="coilID">
+          <select id="coilID" name="coilID" class="input">
+            <option value="252">152mm (6")</option>
+            <option value="205">205mm (8")</option>
+            <option value="254">254mm (10")</option>
             <option value="305">305mm (12")</option>
             <option value="406">406mm (16")</option>
+            <option value="457">457mm (18")</option>
             <option value="508" selected="selected">508mm (20")</option>
             <option value="610">610mm (24")</option>
           </select>
           <br />
           <label for="desnity">Density</label>
-          <select id="density" name="density">
+          <select id="density" name="density" class="input">
             <option value="8000" selected="selected">Stainless Steel</option>
-            <option value="7900">Stainless Steel - All Alloys</option>
+            <option value="7900">Stainless Steel - All Alloys Standard</option>
             <option value="2700">Aluminium</option>
           </select>
           <br />
-          <label for="machine">Machine</label>
-          <select id="machine" name="machine">
+          <label for="machine">Machine (check Our Capabilities)</label>
+          <select id="machine" name="machine" class="input">
             <option value="0" selected="selected">Preston Old</option>
             <option value="1">Preston New</option>
           </select>
           <br />
           <hr />
-          <!--
-  ==================
-  SLIT SIZES SECTION
-  ==================
-  -->
+          <!--Add Slit Sizes-->
           <section class="optional">
-            <h3 class="collapsible">
-              Optional Data - Slit Sizes
-            </h3>
+            <div class="collapsible-header">
+              <h3>Slit Sizes (optional)</h3>
+              <button type="button" class="add small-btn">Add Width</button>
+              <button type="button" class="minus small-btn">
+                Remove Width
+              </button>
+            </div>
             <div class="collapse">
-              <div class="grid-container">
-                <div class="slits">
-                  <label for="slits">Number Of Slits</label>
-                  <input
-                    class="slitNum"
-                    id="slits"
-                    name="slits"
-                    input
-                    type="number"
-                    value="1"
-                    required
-                    min="1"
-                  />
+              <div class="slits-and-sizes">
+                <!-- Initial entry -->
+                <div class="slits-sizes-entry">
+                  <div class="slits">
+                    <label for="slits">Number Of Slits</label>
+                    <input
+                      class="slitNum input"
+                      name="slits"
+                      type="number"
+                      value="1"
+                      required
+                      min="1"
+                    />
+                  </div>
+                  <div class="sizes">
+                    <label for="slitWidth">Slit Width (mm)</label>
+                    <input
+                      class="slitWidth input"
+                      name="slitWidth"
+                      type="number"
+                      placeholder="0"
+                      min="1"
+                    />
+                  </div>
                 </div>
-                <div class="sizes">
-                  <label for="slitWidth">Slit Width (mm)</label>
-                  <input
-                    class="slitWidth"
-                    id="slitWidth"
-                    name="slitWidth"
-                    input
-                    type="number"
-                    placeholder="0"
-                    min="1"
-                  />
-                </div>
-              </div>
-              <div class="center">
-                <span class="material-symbols-outlined add span icon"
-                  >add_circle</span
-                >
-                <span class="material-symbols-outlined minus span icon"
-                  >remove</span
-                >
               </div>
             </div>
           </section>
           <hr />
-          <!--
-  ================
-  CALCULATE BUTTON
-  ================
-  -->
-          <div class="center">
-            <button class="big-btn" type="button" onclick="validateForm()">
-              Calculate
-            </button>
-          </div>
         </form>
-
-        <!--
-  ======
-  REPORT
-  ======
-  -->
+      </div>
+      <!--Report-->
+      <div id="report-container">
         <section id="report">
           <h2>Report</h2>
           <h3 class="collapsible">Measurements Of The Feed Coil</h3>
           <div class="collapse">
-            <p id="coilWeight"></p>
-            <p id="feedLength"></p>
-            <p id="feedCoilOD"></p>
+            <p id="coilWeight">Feed Coil Weight</p>
+            <p id="feedLength">Feed Coil Length</p>
+            <p id="feedCoilOD">Feed Coil OD</p>
           </div>
           <h3 class="collapsible">Coil Measurements Per Run</h3>
           <div class="collapse">
-            <p id="length"></p>
-            <p id="coilOD"></p>
-            <p id="buildUp"></p>
-            <p id="runWeight"></p>
+            <p id="length">Length</p>
+            <p id="coilOD">Coil OD</p>
+            <p id="buildUp">Build buildUp</p>
+            <p id="runWeight">Run Weight</p>
           </div>
           <h3 id="slitSizeHeader" class="collapsible slitData">Slit Sizes</h3>
           <div class="collapse slitData">
