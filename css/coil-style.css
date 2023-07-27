@@ -131,6 +131,7 @@ body {
   }
   
   #slitSizes li {
+    font-size: larger;
     margin-bottom: 5px;
   }
 
