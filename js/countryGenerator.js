@@ -3,7 +3,9 @@ function selectRandomCountry() {
   const randomCountry = countries[randomIndex];
   str = randomCountry.replace(/\s+/g, '-').toLowerCase();
   document.getElementById("selectedCountry").innerHTML = randomCountry;
-  document.getElementById("flag").src = "https://www.countryflags.com/wp-content/uploads/"+str+"-flag-png-large.png"
+  document.getElementById("flag").src = "https://cdn.countryflags.com/thumbs/" + str + "/flag-800.png";
+  
+  //"https://www.countryflags.com/wp-content/uploads/"+str+"-flag-png-large.png";
   document.getElementById("flag").style.display = "inline";
 }
 function imgError(){
@@ -39,7 +41,7 @@ const countries = [
   "Bulgaria",
   "Burkina Faso",
   "Burundi",
-  "Cabo Verde",
+  "Cape Verde",
   "Cambodia",
   "Cameroon",
   "Canada",
@@ -49,8 +51,8 @@ const countries = [
   "China",
   "Colombia",
   "Comoros",
-  "Democratic Republic of the Congo",
-  "Republic of the Congo",
+  "Congo Democratic Republic Of The",
+  "Congo Republic Of The",
   "Costa Rica",
   "Cote d'Ivoire",
   "Croatia",
@@ -129,7 +131,7 @@ const countries = [
   "Montenegro",
   "Morocco",
   "Mozambique",
-  "Myanmar (Burma)",
+  "Myanmar",
   "Namibia",
   "Nauru",
   "Nepal",
@@ -202,7 +204,7 @@ const countries = [
 "Uruguay",
 "Uzbekistan",
 "Vanuatu",
-"Vatican City (Holy See)",
+"Vatican City",
 "Venezuela",
 "Vietnam",
 "Yemen",

@@ -40,11 +40,11 @@
   .card{
     background: var(--col-primary-darkest);
     &:hover{
-      background: var(--col-primary-dark);
+      background: var(--col-secondary-dark);
     }
   }
   .selected {
-    background: var(--col-primary-lightest);
+    background: var(--col-secondary-lightest);
   }
   .closed {
     background: var(--col-bg-contrast-low);
