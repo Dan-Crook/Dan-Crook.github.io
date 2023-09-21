@@ -313,7 +313,7 @@ CALCULATING SLIT SIZES
         scrap.toFixed(0) +
         "mm (" +
         scrapWeight.toFixed(0) +
-        "kg)" +
+        "kg) " +
         scrapPercent.toFixed(0) +
         "%</li>"
     );
