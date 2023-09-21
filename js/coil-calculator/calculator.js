@@ -7,7 +7,6 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-
 /*
 ================
 Global Variables
@@ -42,7 +41,6 @@ const prestonNew = `{
 
 let machineSpec = [prestonOld, prestonNew];
 
-
 function validateForm() {
   let errorCount = 0;
   let valForm = [$("#weightOrLength"), $("#width"), $("#gauge")];
@@ -69,7 +67,6 @@ function validateForm() {
     calculate();
   }
 }
-
 
 function calculate() {
   /*
@@ -120,13 +117,11 @@ VARIABLES FROM USER INPUT
   let weight = 0;
   let errorType = JSON.parse(machineSpec[machine]);
 
-
-  if($("#length-weight").val()=="weight"){
+  if ($("#length-weight").val() == "weight") {
     lenBool = false;
-}
-else{
+  } else {
     lenBool = true;
-};
+  }
   if (lenBool == true) {
     lengthInput = $("#weightOrLength").val();
     weight = density * ((width * gauge * lengthInput) / coefficient);
@@ -189,9 +184,8 @@ FEED COIL INFORMATION
   let feedLengthTotal =
     Math.round(((weight / density) * coefficient) / (width * gauge)) || 0;
   let feedLength =
-    Math.round(
-      ((weight / coils / density) * coefficient) / (width * gauge)
-    ) || 0;
+    Math.round(((weight / coils / density) * coefficient) / (width * gauge)) ||
+    0;
   let feedCoilOD =
     Math.round(
       Math.sqrt(coilID ** 2 + (4 * feedLength * gauge * 1000) / Math.PI)
@@ -239,8 +233,7 @@ PRODUCED COILS INFORMATION
   let runWeight = weight / runs / coils;
   let runWeightPounds = runWeight * 2.2;
   let length =
-    Math.round(((runWeight / density) * coefficient) / (width * gauge)) ||
-    0;
+    Math.round(((runWeight / density) * coefficient) / (width * gauge)) || 0;
   let coilOD =
     Math.round(
       Math.sqrt(coilID ** 2 + (4 * length * gauge * 1000) / Math.PI)
@@ -248,9 +241,7 @@ PRODUCED COILS INFORMATION
   let buildUp = runWeight / width || 0;
   let coilODInch = coilOD / 25.4;
 
-  $("#length").text(
-    "Coil Length = " + length.toFixed(2).toString() + "meters"
-  );
+  $("#length").text("Coil Length = " + length.toFixed(2).toString() + "meters");
   $("#coilOD").text(
     "Coil OD = " +
       coilOD.toString() +
@@ -277,64 +268,71 @@ PRODUCED COILS INFORMATION
 CALCULATING SLIT SIZES
 ======================
 */
-$("#slitSizes").empty();
-slitSizes = $(".slitWidth");
-numSlits = $(".slitNum");
-let scrap = width;
-let scrapWeight = 0;
-let sizeCount = 0;
-let sizeError = 0;
-for (var i = 0, n = slitSizes.length; i < n; i++) {
-  let size = $(slitSizes[i]).val();
-  let num = $(numSlits[i]).val();
-  if (size > 0 && num > 0) {
-    sizeCount = +1;
-    if (size < errorType.slitWidth) {
-      sizeError = +1;
+  $("#slitSizes").empty();
+  slitSizes = $(".slitWidth");
+  numSlits = $(".slitNum");
+  let scrap = width;
+  let scrapWeight = 0;
+  let sizeCount = 0;
+  let sizeError = 0;
+  for (var i = 0, n = slitSizes.length; i < n; i++) {
+    let size = $(slitSizes[i]).val();
+    let num = $(numSlits[i]).val();
+    if (size > 0 && num > 0) {
+      sizeCount = +1;
+      if (size < errorType.slitWidth) {
+        sizeError = +1;
+      }
+      let totalSlitWeight = (weight / width) * num * size;
+      let numCoils = coils * runs * num;
+      let slitWeight = totalSlitWeight / numCoils;
+      scrap = scrap - num * size;
+      scrapWeight = (weight / width) * scrap;
+      $("#slitSizes").append(
+        "<li>" +
+          $(slitSizes[i]).val() +
+          "mm Total: " +
+          totalSlitWeight.toFixed(0).toString() +
+          "kg <br> " +
+          numCoils +
+          " coils at " +
+          slitWeight.toFixed(0).toString() +
+          "kg (" +
+          (slitWeight * 2.2).toFixed(1).toString() +
+          " lb) each</li><br>"
+      );
     }
-    let totalSlitWeight = (weight / width) * num * size;
-    let numCoils = coils * runs * num;
-    let slitWeight = totalSlitWeight / numCoils;
-    scrap = scrap - num * size;
-    scrapWeight = (weight / width) * scrap;
+  }
+  if (sizeError > 0) {
+    $("#messages").append(errorSlitSize);
+  }
+  if (sizeCount > 0) {
+    let scrapPercent = (100 / width) * scrap;
     $("#slitSizes").append(
-      "<li>" +
-      $(slitSizes[i]).val() +
-      "mm Total: " +
-      totalSlitWeight.toFixed(0).toString() +
-      "kg <br> " +
-      numCoils +
-      " coils at " +
-      slitWeight.toFixed(0).toString() +
-      "kg (" +
-      (slitWeight * 2.2).toFixed(1).toString() +
-      " lb) each</li><br>"
+      "<li>Scrap: " +
+        scrap.toFixed(0) +
+        "mm (" +
+        scrapWeight.toFixed(0) +
+        "kg)" +
+        scrapPercent.toFixed(0) +
+        "%</li>"
     );
   }
-}
-if (sizeError > 0) {
-  $("#messages").append(errorSlitSize);
-}
-if (sizeCount > 0) {
-  $("#slitSizes").append(
-    "<li>Scrap: " + scrap.toFixed(0) + "mm (" + scrapWeight.toFixed(0) + "kg)</li>"
-  );
-}
-if (scrap < 0) {
-  alert("Slit widths exceed the feed coil width");
-  $("#slitSizes").addClass("slitError")
-  $("#slitSizes").children("*").addClass("slitError")
-  $("#messages").append(
-    '<li class="message error">Slit widths exceed the Feed coil width</li>'
-  );
-} else if (scrap < errorType.scrap) {
-  $("#messages").append(errorScrap);
-  $("#slitSizes").removeClass("slitError")
-  $("#slitSizes").children("*").removeClass("slitError")
-} else {
-  $("#slitSizes").removeClass("slitError")
-  $("#slitSizes").children("*").removeClass("slitError")
-}
+  if (scrap < 0) {
+    alert("Slit widths exceed the feed coil width");
+    $("#slitSizes").addClass("slitError");
+    $("#slitSizes").children("*").addClass("slitError");
+    $("#messages").append(
+      '<li class="message error">Slit widths exceed the Feed coil width</li>'
+    );
+  } else if (scrap < errorType.scrap) {
+    $("#messages").append(errorScrap);
+    $("#slitSizes").removeClass("slitError");
+    $("#slitSizes").children("*").removeClass("slitError");
+  } else {
+    $("#slitSizes").removeClass("slitError");
+    $("#slitSizes").children("*").removeClass("slitError");
+  }
   /*
 ================
 PRODUCTION TIMES
