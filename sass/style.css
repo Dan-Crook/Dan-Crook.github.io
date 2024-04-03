@@ -16,17 +16,10 @@ body {
   padding: 0px;
   min-height: 100vh;
   width: 100%;
-  justify-content: center;
-  align-items: center;
   text-align: center;
-  background: var(--col-bg);
-  text-align: center;
+  background-color: var(--col-bg);
   font-family: var(--font-main);
   color: var(--col-text);
-}
-
-main {
-  margin: 0 15%;
 }
 
 * {
@@ -272,6 +265,71 @@ Large scale CSS
     margin: 5px;
   }
 }
+.wheelContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: var(--font-main);
+  color: var(--col-text);
+}
+
+.wordWheelGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 200px);
+  grid-template-rows: repeat(3, 200px);
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+}
+.wordWheelGrid > button {
+  padding: auto;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  width: 150px;
+  height: 150px;
+  font-size: var(--font-size-heading-large);
+  border: 1px solid var(--col-secondary-lightest);
+  background-color: var(--col-secondary);
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.wordWheelGrid > button:hover {
+  background-color: var(--col-secondary-lightest);
+}
+.wordWheelGrid .middleButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--col-primary-dark);
+  width: 200px;
+  height: 200px;
+}
+.wordWheelGrid .middleButton:hover {
+  background-color: var(--col-primary-light);
+}
+
+.answerButton {
+  padding: auto;
+  margin: 50px, auto;
+}
+
+.answer {
+  margin: 20px auto;
+  width: 500px;
+  height: 100px;
+  text-align: center;
+  font-size: var(--font-size-medium);
+  border: 1px solid var(--col-border-contrast-lowest);
+  padding: 10px;
+  box-sizing: border-box;
+  border-radius: 5px;
+  background-color: var(--col-bg);
+  color: var(--col-text);
+}
+
 :root {
   --col-primary: #e6a628;
   --col-primary-lightest: #ebb853;
@@ -288,7 +346,7 @@ Large scale CSS
   --col-tertiary-light: #3ca4ff;
   --col-tertiary-dark: #21628e;
   --col-tertiary-darkest: #153e5b;
-  --col-bg: #101117 ;
+  --col-bg: #101117;
   --col-bg-contrast-high: #282a3a;
   --col-bg-contrast-mid: #202627;
   --col-bg-contrast-low:#202627;

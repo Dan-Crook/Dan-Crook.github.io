@@ -1,0 +1,71 @@
+$button-size: 150px; // Adjust the button size as needed
+$wordWheelSize: 200px;
+$middleButtonSize: 200px;
+
+.wheelContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: var(--font-main);
+  color: var(--col-text);
+}
+
+.wordWheelGrid {
+  display: grid;
+  grid-template-columns: repeat(3, $wordWheelSize);
+  grid-template-rows: repeat(3, $wordWheelSize);
+  gap: 10px; // Adjust the gap between buttons as needed
+  justify-content: center;
+  align-items: center;
+
+  > button {
+    padding: auto;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    width: $button-size;
+    height: $button-size;
+    font-size: var(--font-size-heading-large);
+    border: 1px solid var(--col-secondary-lightest);
+    background-color: var(--col-secondary);
+    cursor: pointer;
+    transition: background-color 0.3s;
+
+    &:hover {
+      background-color: var(--col-secondary-lightest);
+    }
+  }
+
+  .middleButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--col-primary-dark);
+    width: $middleButtonSize;
+    height: $middleButtonSize;
+
+    &:hover {
+      background-color: var(--col-primary-light);
+    }
+  }
+}
+.answerButton{
+    padding: auto;
+    margin: 50px, auto;
+}
+
+.answer{
+    margin: 20px auto;
+    width: 500px;
+    height: 100px;
+    text-align: center;
+    font-size: var(--font-size-medium);
+    border: 1px solid var(--col-border-contrast-lowest);
+    padding: 10px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    background-color: var(--col-bg);
+    color: var(--col-text);
+}
