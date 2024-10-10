@@ -38,8 +38,20 @@ const prestonNew = `{
         "offOD": 1190,
         "offWeight": 750
       }`;
+const allAlloy = `{
+        "od": 1840,
+        "width": 710,
+        "onWeight": 3000,
+        "minGauge": 0.3,
+        "maxGauge": 2.0,
+        "scrap": 8,
+        "slits": 13,
+        "slitWidth": 9.05,
+        "offOD": 1320,
+        "offWeight": 2000
+      }`;
 
-let machineSpec = [prestonOld, prestonNew];
+let machineSpec = [prestonOld, prestonNew, allAlloy];
 
 function validateForm() {
   let errorCount = 0;
